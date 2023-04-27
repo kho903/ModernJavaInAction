@@ -43,6 +43,13 @@ public class FilteringApples {
 
 		List<Apple> result = filterApples(inventory, (Apple apple) -> RED.equals(apple.getColor()));
 		System.out.println("result = " + result);
+
+		List<Apple> redAppleList = filter(inventory, (Apple apple) -> RED.equals(apple.getColor()));
+		System.out.println("redAppleList = " + redAppleList);
+
+		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+		List<Integer> evenNumbers = filter(numbers, (Integer i) -> i % 2 == 0);
+		System.out.println("evenNumbers = " + evenNumbers);
 	}
 
 	public static List<Apple> filterGreenApples(List<Apple> inventory) {
@@ -148,7 +155,7 @@ public class FilteringApples {
 		@Override
 		public boolean test(Apple apple) {
 			return RED.equals(apple.getColor())
-					&& apple.getWeight() > 150;
+				&& apple.getWeight() > 150;
 		}
 	}
 
@@ -176,6 +183,20 @@ public class FilteringApples {
 		public String accept(Apple apple) {
 			return "An apple of " + apple.getWeight() + "g";
 		}
+	}
+
+	public interface Predicate<T> {
+		boolean test(T t);
+	}
+
+	public static <T> List<T> filter(List<T> list, Predicate<T> p) {
+		List<T> result = new ArrayList<>();
+		for (T e : list) {
+			if (p.test(e)) {
+				result.add(e);
+			}
+		}
+		return result;
 	}
 
 }
