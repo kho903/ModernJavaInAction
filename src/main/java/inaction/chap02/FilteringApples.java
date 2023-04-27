@@ -4,6 +4,7 @@ import static inaction.chap02.FilteringApples.Color.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class FilteringApples {
@@ -50,6 +51,18 @@ public class FilteringApples {
 		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 		List<Integer> evenNumbers = filter(numbers, (Integer i) -> i % 2 == 0);
 		System.out.println("evenNumbers = " + evenNumbers);
+
+		inventory.sort(new Comparator<Apple>() {
+			@Override
+			public int compare(Apple o1, Apple o2) {
+				return Integer.compare(o1.getWeight(), o2.getWeight());
+			}
+		});
+		System.out.println(inventory);
+
+		inventory.sort(
+			(Apple a1, Apple a2) -> Integer.compare(a1.getWeight(), a2.getWeight()));
+		System.out.println(inventory);
 	}
 
 	public static List<Apple> filterGreenApples(List<Apple> inventory) {
