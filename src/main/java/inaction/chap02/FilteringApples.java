@@ -18,12 +18,39 @@ public class FilteringApples {
 		List<Apple> greenApples = filterGreenApples(inventory);
 		System.out.println("greenApples = " + greenApples);
 
+		List<Apple> greenApples2 = filterApplesByColor(inventory, GREEN);
+		List<Apple> redApples = filterApplesByColor(inventory, RED);
+		System.out.println("greenApples2 = " + greenApples2);
+		System.out.println("redApples = " + redApples);
+
+		List<Apple> over100Apples = filterApplesByWeight(inventory, 100);
+		System.out.println("over100Apples = " + over100Apples);
 	}
 
 	public static List<Apple> filterGreenApples(List<Apple> inventory) {
 		List<Apple> result = new ArrayList<>();
 		for (Apple apple : inventory) {
 			if (GREEN.equals(apple.getColor())) {
+				result.add(apple);
+			}
+		}
+		return result;
+	}
+
+	public static List<Apple> filterApplesByColor(List<Apple> inventory, Color color) {
+		List<Apple> result = new ArrayList<>();
+		for (Apple apple : inventory) {
+			if (apple.getColor().equals(color)) {
+				result.add(apple);
+			}
+		}
+		return result;
+	}
+
+	public static List<Apple> filterApplesByWeight(List<Apple> inventory, int weight) {
+		List<Apple> result = new ArrayList<>();
+		for (Apple apple : inventory) {
+			if (apple.getWeight() > weight) {
 				result.add(apple);
 			}
 		}
