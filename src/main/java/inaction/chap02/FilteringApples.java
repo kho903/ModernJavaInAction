@@ -32,6 +32,14 @@ public class FilteringApples {
 
 		prettyPrintApple(inventory, new AppleFancyFormatter());
 		prettyPrintApple(inventory, new AppleSimpleFormatter());
+
+		List<Apple> filterRedApples = filterApples(inventory, new ApplePredicate() {
+			@Override
+			public boolean test(Apple apple) {
+				return RED.equals(apple.getColor());
+			}
+		});
+		System.out.println("filterRedApples = " + filterRedApples);
 	}
 
 	public static List<Apple> filterGreenApples(List<Apple> inventory) {
