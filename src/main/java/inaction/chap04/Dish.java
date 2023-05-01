@@ -42,7 +42,7 @@ public class Dish {
 			'}';
 	}
 
-	private enum Type {
+	public enum Type {
 		MEAT, FISH, OTHER
 	}
 
